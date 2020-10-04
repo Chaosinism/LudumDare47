@@ -1,0 +1,196 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://VT323-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://images/ui/dialog.png" type="Texture" id=2]
+[ext_resource path="res://GameOver.gd" type="Script" id=3]
+[ext_resource path="res://images/ui/gameover1.png" type="Texture" id=4]
+[ext_resource path="res://images/ui/gameover2.png" type="Texture" id=5]
+[ext_resource path="res://images/ui/portrait3.png" type="Texture" id=6]
+[ext_resource path="res://images/battle/Enemy_2b.png" type="Texture" id=7]
+[ext_resource path="res://images/battle/Enemy_2.png" type="Texture" id=8]
+[ext_resource path="res://images/battle/Enemy_1.png" type="Texture" id=9]
+[ext_resource path="res://images/battle/Enemy4.png" type="Texture" id=10]
+[ext_resource path="res://images/battle/Enemy_1b.png" type="Texture" id=11]
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 9 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 300, 300 )
+margin_left = 30.0
+margin_right = 28.5077
+margin_top = 26.0404
+margin_bottom = 30.1367
+modulate_color = Color( 1, 0.494118, 0.654902, 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 36
+outline_size = 1
+outline_color = Color( 1, 0, 0, 1 )
+extra_spacing_top = -20
+extra_spacing_bottom = -20
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 48
+outline_size = 2
+outline_color = Color( 0.788235, 0.45098, 0.203922, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 36
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "default"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("gameover1/gameover2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -100 ), Vector2( 0, 0 ) ]
+}
+
+[node name="GameOver" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="gameover1" type="Sprite" parent="."]
+position = Vector2( 480, 276 )
+texture = ExtResource( 4 )
+
+[node name="gameover2" type="Sprite" parent="gameover1"]
+position = Vector2( 0, -5.99999 )
+texture = ExtResource( 5 )
+offset = Vector2( 0, -54 )
+
+[node name="portrait3" type="Sprite" parent="."]
+position = Vector2( 280, 408 )
+scale = Vector2( 1.38, 1.38 )
+texture = ExtResource( 6 )
+
+[node name="Enemy4" type="Sprite" parent="."]
+position = Vector2( 400, 200 )
+rotation = 0.888373
+texture = ExtResource( 10 )
+
+[node name="Enemy5" type="Sprite" parent="."]
+position = Vector2( 720, 360 )
+rotation = -0.645772
+texture = ExtResource( 10 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 616, 208 )
+scale = Vector2( 1.22, 1.22 )
+frames = SubResource( 5 )
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
+position = Vector2( 256, 296 )
+rotation = -0.404916
+scale = Vector2( 1.64153, 1.64153 )
+frames = SubResource( 6 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 960.0
+margin_bottom = 88.0
+color = Color( 0.137255, 0.137255, 0.137255, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+margin_right = 120.0
+margin_bottom = 712.0
+color = Color( 0.137255, 0.137255, 0.137255, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+margin_left = 840.0
+margin_right = 960.0
+margin_bottom = 712.0
+color = Color( 0.137255, 0.137255, 0.137255, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+margin_top = 472.0
+margin_right = 960.0
+margin_bottom = 712.0
+color = Color( 0.137255, 0.137255, 0.137255, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Restart" type="Button" parent="."]
+margin_left = 24.0
+margin_top = 560.0
+margin_right = 296.0
+margin_bottom = 613.177
+custom_styles/normal = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
+text = "RESTART LEVEL"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Return" type="Button" parent="."]
+margin_left = 24.0
+margin_top = 632.0
+margin_right = 292.508
+margin_bottom = 685.177
+custom_styles/normal = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
+text = "RETURN TO TITLE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 288.0
+margin_top = 16.0
+margin_right = 668.0
+margin_bottom = 65.0
+custom_fonts/font = SubResource( 3 )
+text = "GAME OVER"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 160.0
+margin_top = 496.0
+margin_right = 804.0
+margin_bottom = 545.0
+custom_fonts/font = SubResource( 4 )
+text = "You failed. The system is full of viruses now."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/default = SubResource( 7 )
+[connection signal="pressed" from="Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="Return" to="." method="_on_Return_pressed"]

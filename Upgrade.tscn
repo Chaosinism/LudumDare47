@@ -1,0 +1,236 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://VT323-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://images/ui/dialog.png" type="Texture" id=2]
+[ext_resource path="res://images/ui/health.png" type="Texture" id=3]
+[ext_resource path="res://Upgrade.gd" type="Script" id=4]
+[ext_resource path="res://3dbg.tscn" type="PackedScene" id=5]
+[ext_resource path="res://images/ui/portrait2.png" type="Texture" id=6]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float size_x = 0.008;
+uniform float size_y = 0.008;
+
+void fragment() {
+	vec2 uv = UV;
+	uv -= mod(uv, vec2(size_x, size_y));
+	
+	COLOR.rgb = textureLod(TEXTURE, uv, 0.0).rgb;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/size_x = 0.008
+shader_param/size_y = 0.008
+
+[sub_resource type="DynamicFont" id=3]
+size = 48
+outline_size = 2
+outline_color = Color( 0.788235, 0.45098, 0.203922, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 36
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 36
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxTexture" id=6]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 300, 300 )
+margin_left = 30.0
+margin_right = 28.5077
+margin_top = 26.0404
+margin_bottom = 30.1367
+
+[sub_resource type="DynamicFont" id=7]
+size = 24
+outline_size = 1
+outline_color = Color( 0.415686, 0.415686, 0.415686, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxTexture" id=8]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 300, 300 )
+margin_left = 30.0
+margin_right = 28.5077
+margin_top = 26.0404
+margin_bottom = 30.1367
+modulate_color = Color( 0.854902, 0.882353, 1, 1 )
+
+[sub_resource type="Animation" id=9]
+resource_name = "default"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 0.55, 0.55 ), Vector2( 0.5, 0.5 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 51.4099, 49.127 )
+
+[node name="Upgrade" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 960, 720 )
+own_world = true
+transparent_bg = true
+
+[node name="3dbg" parent="Viewport" instance=ExtResource( 5 )]
+
+[node name="Viewport_Sprite" type="Sprite" parent="."]
+material = SubResource( 2 )
+position = Vector2( 480, 360 )
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 174.167
+margin_top = 20.0
+margin_right = 782.167
+margin_bottom = 69.0
+custom_fonts/font = SubResource( 3 )
+text = "Level clear! Upgrades available."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 20.0
+margin_top = 102.0
+margin_right = 381.0
+margin_bottom = 151.0
+custom_fonts/font = SubResource( 4 )
+text = "Increase Max Health"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="State" type="Label" parent="."]
+margin_left = 380.0
+margin_top = 80.0
+margin_right = 589.0
+margin_bottom = 129.0
+custom_fonts/font = SubResource( 5 )
+text = "1 / 2"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Avatar" type="Label" parent="."]
+margin_left = 760.0
+margin_top = 520.0
+margin_right = 940.0
+margin_bottom = 700.0
+custom_styles/normal = SubResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Dialog" type="Label" parent="."]
+margin_left = 260.0
+margin_top = 520.0
+margin_right = 740.0
+margin_bottom = 660.0
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
+text = "Maybe I can make some improvements before the next wave of viruses come.
+Click on an item to claim it."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Selector" type="Label" parent="."]
+margin_left = 60.0
+margin_top = 142.0
+margin_right = 900.0
+margin_bottom = 212.177
+custom_styles/normal = SubResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="."]
+margin_left = 20.0
+margin_top = 212.0
+margin_right = 381.0
+margin_bottom = 261.0
+custom_fonts/font = SubResource( 4 )
+text = "Remove Actions"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Selector2" type="Label" parent="."]
+margin_left = 60.0
+margin_top = 252.0
+margin_right = 900.0
+margin_bottom = 354.0
+custom_styles/normal = SubResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="."]
+margin_left = 20.0
+margin_top = 354.0
+margin_right = 381.0
+margin_bottom = 403.0
+custom_fonts/font = SubResource( 4 )
+text = "Gain New Actions"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Selector3" type="Label" parent="."]
+margin_left = 60.0
+margin_top = 394.0
+margin_right = 900.0
+margin_bottom = 496.0
+custom_styles/normal = SubResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Health" type="Sprite" parent="."]
+position = Vector2( 480, 180 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Health"]
+anims/default = SubResource( 9 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="Health"]
+input_pickable = true
+collision_layer = 512
+collision_mask = 2147484160
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Health/KinematicBody2D"]
+position = Vector2( 0.561234, -0.561211 )
+shape = SubResource( 10 )
+
+[node name="Spawn" type="Node2D" parent="."]
+position = Vector2( 100, 300 )
+
+[node name="Spawn2" type="Node2D" parent="."]
+position = Vector2( 100, 445 )
+
+[node name="portrait2" type="Sprite" parent="."]
+position = Vector2( 860, 600 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 6 )
+[connection signal="input_event" from="Health/KinematicBody2D" to="." method="_on_KinematicBody2D_input_event"]
